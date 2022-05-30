@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('areas_de_enfoque', function (Blueprint $table) {
             $table->id();
             $table->string("nombre");
-            $table->timestamps();
         });
     }
 

@@ -15,21 +15,22 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
-            $table->string("areasEnfoque");
+            //1 (odio),2 (neutral),3 (me encanta)
             $table->integer("gustoPorCarne");
+            //1 (odio),2 (neutral),3 (me encanta)
             $table->integer("gustoPorCerdo");
+            //1 (odio),2 (neutral),3 (me encanta)
             $table->integer("gustoPorPescado");
-            $table->string("vejetalesQueNoConsume");
-            $table->string("carbohidratosQueNoConsume");
-            $table->string("frutosQueNoConsume");
-            $table->string("alimentosQueNoConsume");
-            $table->string("alergias");
             $table->float("horasParaCocinar");
             $table->boolean("desayuna");
             $table->float("horasParaEjercicio");
+            //1 (inactivo),2 (rarmente activo 1-2 entrenos por semana)
+            //3 (activo 3-5 entrenos por semana)
             $table->integer("nivelActividadFisica");
             $table->integer("edad");
+            //metros
             $table->float("estatura");
+            //libras
             $table->float("pesoActual");
             $table->float("pesoDeseado");
             $table->foreignId("id_usuario")->references("id")->on("users");

@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dias', function (Blueprint $table) {
+        Schema::create('alimento_no_consumidos', function (Blueprint $table) {
             $table->id();
-            $table->string("nombre");
+            $table->foreignId("id_cliente")->references("id")->on("clientes");
+            $table->foreignId("id_alimentos")->references("id")->on("alimentos");
+            $table->timestamps();
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dias');
+        Schema::dropIfExists('alimento_no_consumidos');
     }
 };
