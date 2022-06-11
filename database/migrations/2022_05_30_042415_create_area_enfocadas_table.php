@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('area_enfocadas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("id_cliente")->references("id")->on("clientes");
-            $table->foreignId("id_areas_de_enfoque")->references("id")->on("areas_de_enfoque");
+            $table->foreignId("id_plan")->references("id")->on("plans");
+            $table->foreignId("id_areas_de_enfoque")->references("id")->on("areas_enfoques");
             $table->timestamps();
         });
     }

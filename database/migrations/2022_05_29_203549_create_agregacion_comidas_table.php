@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('agregacion_comidas', function (Blueprint $table) {
             $table->id();
+            $table->string('comida');
             $table->foreignId("id_plan_diario")->references("id")->on("plan_diarios");
             $table->timestamps();
         });

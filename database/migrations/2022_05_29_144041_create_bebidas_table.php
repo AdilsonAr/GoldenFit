@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string("nombre");
             $table->string("porcion");
+            $table->string("comidaDelDia");
             $table->integer("calorias");
-            $table->foreignId("id_tipo")->references("id")->on("tipo_alimentos");
             $table->timestamps();
         });
     }

@@ -14,6 +14,6 @@ class AreaEnfocadaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        
     }
 }

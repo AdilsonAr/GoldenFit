@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('ejercicios', function (Blueprint $table) {
             $table->id();
             $table->string("nombre");
-            $table->string("descripcion");
-            $table->foreignId("id_area_enfoque")->references("id")->on("areas_de_enfoque");
+            $table->text("descripcion");
+            $table->foreignId("id_area_enfoque")->references("id")->on("areas_enfoques");
             $table->timestamps();
         });
     }

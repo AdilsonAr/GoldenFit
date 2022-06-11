@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('plan_nutricionals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("plan")->references("id")->on("plans");
+            $table->foreignId("id_plan")->references("id")->on("plans");
             $table->timestamps();
         });
     }

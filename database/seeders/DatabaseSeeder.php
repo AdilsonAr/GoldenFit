@@ -18,6 +18,11 @@ class DatabaseSeeder extends Seeder
             DiaSeeder::class,
             AreasEnfoqueSeeder::class,
             TipoAlimentoSeeder::class,
+            BebidaSeeder::class,
+            AlimentoSeeder::class,
+            EjercicioSeeder::class,
+            ClienteSeeder::class,
+            AlimentoNoConsumidoSeeder::class,
         ]);
     }
 }

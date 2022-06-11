@@ -33,6 +33,12 @@ return new class extends Migration
             //libras
             $table->float("pesoActual");
             $table->float("pesoDeseado");
+
+            $table->string("sexo");
+            $table->string("nombre");
+            $table->string("apellidos");
+            $table->string("telefono");
+
             $table->foreignId("id_usuario")->references("id")->on("users");
             $table->timestamps();
         });

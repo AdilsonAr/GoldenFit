@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId("id_cliente")->references("id")->on("clientes");
             $table->date('fecha_diseno');
             $table->date('fecha_finalizacion');
-            $table->integer("meses_duracion");
+            $table->float("meses_duracion");
             $table->timestamps();
         });
     }

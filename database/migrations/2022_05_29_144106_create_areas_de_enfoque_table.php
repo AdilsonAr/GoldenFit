@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('areas_de_enfoque', function (Blueprint $table) {
+        Schema::create('areas_enfoques', function (Blueprint $table) {
             $table->id();
             $table->string("nombre");
         });

@@ -15,7 +15,7 @@ class AreasEnfoqueSeeder extends Seeder
      */
     public function run()
     {
-        DB::table("areas_de_enfoque")->insert([
+        DB::table("areas_enfoques")->insert([
             [
                 "nombre" => "grasa del vientre",
             ],
