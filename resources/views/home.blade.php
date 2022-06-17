@@ -1,18 +1,20 @@
 @extends('layouts.app')
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
           
 
-            <form id="regForm" action="">
+            <form id="regForm" data-action="{{ url('saveinformation') }}"  method="post">
 
                 <h1>Information:</h1>
                 
                 <!-- One "tab" for each step in the form: -->
-                <div class="tab">Name:
-                  <p><input placeholder="First name..." oninput="this.className = ''"></p>
-                  <p><input placeholder="Last name..." oninput="this.className = ''"></p>
+                <div class="tab">Personal Information:
+                  <p><input placeholder="First name..." oninput="this.className = ''" name="someName"></p>
+                  <p><input placeholder="Age..." oninput="this.className = ''" name="age"></p>
                 </div>
                 
                 <div class="tab">Contact Info:
@@ -49,6 +51,36 @@
                 </form>
         </div>
         <script>
+            $(document).ready(function(){
+
+var form = '#regForm';
+
+$(form).on('submit', function(event){
+    event.preventDefault();
+
+    var url = $(this).attr('data-action');
+
+    $.ajax({
+        url: url,
+        method: 'POST',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data: new FormData(this),
+        dataType: 'JSON',
+        contentType: false,
+        cache: false,
+        processData: false,
+        success:function(response)
+        {
+            $(form).trigger("reset");
+            alert(response.message)
+        },
+        error: function(response) {
+        }
+    });
+});
+
+});
+
             var currentTab = 0; // Current tab is set to be the first tab (0)
             showTab(currentTab); // Display the current tab
             
@@ -64,6 +96,7 @@
               }
               if (n == (x.length - 1)) {
                 document.getElementById("nextBtn").innerHTML = "Submit";
+                $('#nextBtn').removeAttr("type").attr("type", "submit");
               } else {
                 document.getElementById("nextBtn").innerHTML = "Next";
               }
@@ -83,7 +116,7 @@
               // if you have reached the end of the form...
               if (currentTab >= x.length) {
                 // ... the form gets submitted:
-                document.getElementById("regForm").submit();
+             
                 return false;
               }
               // Otherwise, display the correct tab:

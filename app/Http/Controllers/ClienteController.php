@@ -17,6 +17,13 @@ class ClienteController extends Controller
         //
     }
 
+
+    public function saveinformation(Request $request)
+   {
+
+
+   return response()->json(['message' => 'success']);
+   }
     /**
      * Show the form for creating a new resource.
      *

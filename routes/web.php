@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\DocumentController;
@@ -51,6 +52,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/summary', function () {
         return view('summary.index');
     });
+
+    Route::post('saveinformation', 'App\Http\Controllers\ClienteController@saveinformation');
 });
 
 
