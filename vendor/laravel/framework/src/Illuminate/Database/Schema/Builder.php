@@ -3,7 +3,6 @@
 namespace Illuminate\Database\Schema;
 
 use Closure;
-use Illuminate\Container\Container;
 use Illuminate\Database\Connection;
 use InvalidArgumentException;
 use LogicException;
@@ -34,7 +33,7 @@ class Builder
     /**
      * The default string length for migrations.
      *
-     * @var int|null
+     * @var int
      */
     public static $defaultStringLength = 255;
 
@@ -168,36 +167,6 @@ class Builder
         }
 
         return true;
-    }
-
-    /**
-     * Execute a table builder callback if the given table has a given column.
-     *
-     * @param  string  $table
-     * @param  string  $column
-     * @param  \Closure  $callback
-     * @return void
-     */
-    public function whenTableHasColumn(string $table, string $column, Closure $callback)
-    {
-        if ($this->hasColumn($table, $column)) {
-            $this->table($table, fn (Blueprint $table) => $callback($table));
-        }
-    }
-
-    /**
-     * Execute a table builder callback if the given table doesn't have a given column.
-     *
-     * @param  string  $table
-     * @param  string  $column
-     * @param  \Closure  $callback
-     * @return void
-     */
-    public function whenTableDoesntHaveColumn(string $table, string $column, Closure $callback)
-    {
-        if (! $this->hasColumn($table, $column)) {
-            $this->table($table, fn (Blueprint $table) => $callback($table));
-        }
     }
 
     /**
@@ -411,7 +380,20 @@ class Builder
             return call_user_func($this->resolver, $table, $callback, $prefix);
         }
 
-        return Container::getInstance()->make(Blueprint::class, compact('table', 'callback', 'prefix'));
+        return new Blueprint($table, $callback, $prefix);
+    }
+
+    /**
+     * Register a custom Doctrine mapping type.
+     *
+     * @param  string  $class
+     * @param  string  $name
+     * @param  string  $type
+     * @return void
+     */
+    public function registerCustomDoctrineType($class, $name, $type)
+    {
+        $this->connection->registerDoctrineType($class, $name, $type);
     }
 
     /**
