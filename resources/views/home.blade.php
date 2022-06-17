@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             
-            <dashboard />
+            <dashboard role={{$role}}/>
         </div>
     </div>
 @endsection

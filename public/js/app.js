@@ -28566,20 +28566,31 @@ var render = function () {
   return _c(
     "div",
     { staticClass: "container" },
-    [_vm._m(0), _vm._v(" "), _c("footer-component")],
+    [
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _vm.role == "user"
+          ? _c("div", [
+              _c("h2", [_vm._v("Dashboard de usuario")]),
+              _vm._v(" "),
+              _c(
+                "a",
+                { staticClass: "btn btn-info", attrs: { type: "button" } },
+                [_vm._v("Generar nuevo plan")]
+              ),
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.role == "admin"
+          ? _c("div", [_c("h2", [_vm._v("Dashboard de administrador")])])
+          : _vm._e(),
+      ]),
+      _vm._v(" "),
+      _c("footer-component"),
+    ],
     1
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row justify-content-center" }, [
-      _c("h2", [_vm._v("Dashboard")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
