@@ -21,7 +21,7 @@ use App\Http\Controllers\SupplierController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', [HomeController::class, 'welcome'])->name('home');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -54,4 +54,4 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 
-Auth::routes(['register'=>false, 'reset'=>false]);
+Auth::routes(['reset'=>false]);
