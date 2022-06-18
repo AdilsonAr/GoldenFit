@@ -18,7 +18,7 @@ class CalculadoraTest extends TestCase
         Log::info("Inicio de la prueba ");
         $service=new CalculadoraService();
         //el segundo argumento es true solo para pruebas
-        $resultado=$service->calcularPlan(1,true);
+        $resultado=$service->calcularPlan(1);
         Log::info($resultado);
 
         $this->assertTrue($resultado!=null);
