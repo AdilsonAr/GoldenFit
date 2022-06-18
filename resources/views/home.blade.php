@@ -17,10 +17,14 @@
                 
                 <!-- One "tab" for each step in the form: -->
                 <div class="tab"><h1>Informacion Personal:</h1>
-                  <p><input placeholder="Estatura..." oninput="this.className = ''" name="estatura"></p>
-                  <p><input placeholder="Edad..." oninput="this.className = ''" name="edad"></p>
-                  <p><input placeholder="Peso Actual Lb..." oninput="this.className = ''" name="pesoActual"></p>
-                  <p><input placeholder="Peso Deseado Lb..." oninput="this.className = ''" name="pesoDeseado"></p>
+                    <p><input placeholder="Nombre..." oninput="this.className = ''" name="nombre"></p>
+                    <p><input placeholder="Apellido..." oninput="this.className = ''" name="apellido"></p>
+                    <p><input placeholder="Telefono..." oninput="this.className = ''" name="telefono"></p>
+                    
+                  <p><input placeholder="Estatura..." oninput="this.className = ''" name="estatura" type="number"></p>
+                  <p><input placeholder="Edad..." oninput="this.className = ''" name="edad"  type="number"></p>
+                  <p><input placeholder="Peso Actual Lb..." oninput="this.className = ''" name="pesoActual"  type="number"></p>
+                  <p><input placeholder="Peso Deseado Lb..." oninput="this.className = ''" name="pesoDeseado"  type="number"></p>
                   <p><label>SEXO:</label></p>
                   <div class="form-check">
                     <input class="form-check-input" type="radio" name="sexo" id="exampleRadios1" value="masculino" checked>
@@ -79,12 +83,12 @@
                
                 
                 <div class="tab">Rutina:
-                  <p><input placeholder="Horario..." oninput="this.className = ''" name="Horario"></p>
+                 
                   <p><input placeholder="Impedimentos..." oninput="this.className = ''" name="Impedimentos"></p>
-                  <p><input placeholder="Cuantas Horas Sueles tener al dia para cocinar..." oninput="this.className = ''" name="horcocina"></p>
-                  <p><input placeholder="Cuantas Horas Sueles tener al dia para hacer ejercicio..." oninput="this.className = ''" name="horeje"></p>
+                  <p><input placeholder="Cuantas Horas Sueles tener al dia para cocinar..." oninput="this.className = ''" name="horasParaCocinar" type="number"></p>
+                  <p><input placeholder="Cuantas Horas Sueles tener al dia para hacer ejercicio..." oninput="this.className = ''" name="horasParaEjercicio" type="number"></p>
                   <p><input placeholder="Cuantas veces a la semana entrenas..." oninput="this.className = ''" name="alasemana"></p>
-                  <p><input placeholder="Impedimentos..." oninput="this.className = ''" name="Impedimentos"></p>
+               
                 </div>
                 
                 <div style="overflow:auto;">
@@ -107,9 +111,14 @@
         <script type="application/javascript">
             $(document).ready(function(){
 var form = '#regForm';
+var isloading=false;
+if(!isloading){
 $(form).on('submit', function(event){
     event.preventDefault();
+    
     var url = $(this).attr('data-action');
+    isloading=true;
+    event.preventDefault();
     $.ajax({
         url: url,
         method: 'POST',
@@ -122,12 +131,14 @@ $(form).on('submit', function(event){
         success:function(response)
         {
             $(form).trigger("reset");
-            alert(response.message)
+            alert("recibira un documento a su correo");
+            location.reload();
         },
         error: function(response) {
         }
     });
 });
+}
 });
             var currentTab = 0; // Current tab is set to be the first tab (0)
             showTab(currentTab); // Display the current tab
@@ -144,9 +155,11 @@ $(form).on('submit', function(event){
               }
               if (n == (x.length - 1)) {
                 document.getElementById("nextBtn").innerHTML = "Submit";
+               
               
               } else {
                 document.getElementById("nextBtn").innerHTML = "Siguiente";
+            
               }
               //... and run a function that will display the correct step indicator:
               fixStepIndicator(n)
@@ -164,7 +177,8 @@ $(form).on('submit', function(event){
               // if you have reached the end of the form...
               if (currentTab >= x.length) {
                 // ... the form gets submitted:
-             
+                $('#nextBtn').removeAttr("type").attr("type", "submit");
+                $('#nextBtn').click();
                 return false;
               }
               // Otherwise, display the correct tab:
