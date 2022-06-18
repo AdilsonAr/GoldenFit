@@ -30,7 +30,7 @@ class NotifyMail extends Mailable
     {
         return $this->from(env('MAIL_FROM_ADDRESS'),'Jose Guzman')
         ->subject('Stock Report - Laravel Tutorial')
-        ->view('home')
+        ->view('mail')
         ->attachData($this->pdf->output(), 'Recibo.pdf');
     }
 }
