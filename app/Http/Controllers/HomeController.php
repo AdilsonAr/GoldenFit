@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\AreasEnfoque;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-      
+        $this->middleware('auth');
     }
 
     /**
@@ -23,11 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = auth()->user();
+        $data=AreasEnfoque::all(['id','nombre']);
+        return view('home')->with(["role" => $user->role,"data"=>$data]);
     }
-    public function welcome()
-    {
-        return view('welcome');
-    }
-
 }

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 
 class CalculadoraService
 {
-    public function calcularPlan($clienteId,$testing=false){
+    public function calcularPlan($clienteId,$testing=false, $areasEnf=[1,2,3,4,5,6]){
         $service=new DataService();
         $cliente=$service->readCliente($clienteId);
         $resultados=array();
@@ -24,7 +24,7 @@ class CalculadoraService
         $planNutricional=$this->getPlanNutricional($plan, $resultados);
         $planEjercicios=$this->getPlanEjercicios($cliente,$plan, $resultados);
         $this->getPlanesNutricionalesDiarios($cliente,$planNutricional,$resultados);
-        $this->getPlanesEjerciciosDiarios($cliente,$plan,$planEjercicios,$resultados,$testing);
+        $this->getPlanesEjerciciosDiarios($cliente,$plan,$planEjercicios,$resultados,$testing,$areasEnf);
 
         $resultados=json_encode($resultados, JSON_UNESCAPED_UNICODE);
         return $resultados;
@@ -185,16 +185,26 @@ class CalculadoraService
         }
     }
 
-    private function getPlanesEjerciciosDiarios($cliente, $plan, $planEjercicios, &$resultados,$testing)
+    private function getPlanesEjerciciosDiarios($cliente, $plan, $planEjercicios, &$resultados,$testing,$areasEnf)
     {
+        foreach($areasEnf as $c){
+            DB::table("area_enfocadas")->insert([
+                [
+                    "id_plan" => $plan->id,
+                    "id_areas_de_enfoque" => $c,
+                ],
+              
+            ]);
+        }
+
         if($testing){
             DB::table("area_enfocadas")->insert([
                 [
-                    "id_plan" => 1,
+                    "id_plan" => $plan->id,
                     "id_areas_de_enfoque" => 1,
                 ],
                 [
-                    "id_plan" => 1,
+                    "id_plan" => $plan->id,
                     "id_areas_de_enfoque" => 4,
                 ],
             ]);

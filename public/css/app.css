@@ -7,7 +7,11 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
  /* Style the form */
+
+ 
 #regForm {
+  border-radius: 2%;
+    box-shadow: 60px -16px #353838;
   background-color: #ffffff;
   margin: 100px auto;
   padding: 40px;
@@ -11334,4 +11338,6 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+
+  
 }

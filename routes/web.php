@@ -22,7 +22,10 @@ use App\Http\Controllers\SupplierController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [HomeController::class, 'welcome'])->name('home');
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -53,8 +56,15 @@ Route::group(['middleware' => ['auth']], function () {
         return view('summary.index');
     });
 
+    
     Route::post('saveinformation', 'App\Http\Controllers\ClienteController@saveinformation');
 });
 
+Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes(['reset'=>false]);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route::get('/send-email-pdf', [App\Http\Controllers\SendEmailController::class, 'index']);
