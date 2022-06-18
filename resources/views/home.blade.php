@@ -12,39 +12,76 @@
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" style="background-image: url(https://wallpaperaccess.com/full/4722377.jpg);
+        background-size: cover;
+    }">
           
 
             <form id="regForm" data-action="{{ url('saveinformation') }}"  method="post">
 
-                <h1>Information:</h1>
+                
                 
                 <!-- One "tab" for each step in the form: -->
-                <div class="tab">Personal Information:
-                  <p><input placeholder="First name..." oninput="this.className = ''" name="someName"></p>
-                  <p><input placeholder="Age..." oninput="this.className = ''" name="age"></p>
+                <div class="tab"><h1>Informacion Personal:</h1>
+                  <p><input placeholder="Peso..." oninput="this.className = ''" name="weight"></p>
+                  <p><input placeholder="Edad..." oninput="this.className = ''" name="age"></p>
+                  <p><input placeholder="Altura..." oninput="this.className = ''" name="height"></p>
                 </div>
                 
-                <div class="tab">Contact Info:
-                  <p><input placeholder="E-mail..." oninput="this.className = ''"></p>
-                  <p><input placeholder="Phone..." oninput="this.className = ''"></p>
+                <div class="tab"><h1>Plan alimenticio:</h1><br>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                          SOLO CARNES
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">
+                         VEGETARIANO
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                        <label class="form-check-label" for="exampleRadios3">
+                          TODOS
+                        </label>
+                      </div>
+                      <br>
+                      <br>
+                  <p><input placeholder="Comidas Alergicas" oninput="this.className = ''" name="comidaalergica"></p>
+                  <p><input placeholder="Comidas No Gratas" oninput="this.className = ''" name="comidanograta"></p>
                 </div>
                 
-                <div class="tab">Birthday:
-                  <p><input placeholder="dd" oninput="this.className = ''"></p>
-                  <p><input placeholder="mm" oninput="this.className = ''"></p>
-                  <p><input placeholder="yyyy" oninput="this.className = ''"></p>
+                <div class="tab">
+                    <h1>PARTES ENFOCADAS:</h1>
+                    @foreach ($data as $area)
+                    <div class="form-check">
+                       
+                        <input class="form-check-input" type="checkbox" value="{{ $area->id }}" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            {{ $area->nombre }}
+                        </label>
+                      </div>
+                      
+                      @endforeach
+                      
+  
                 </div>
                 
-                <div class="tab">Login Info:
-                  <p><input placeholder="Username..." oninput="this.className = ''"></p>
-                  <p><input placeholder="Password..." oninput="this.className = ''"></p>
+                <div class="tab">Rutina:
+                  <p><input placeholder="Horario..." oninput="this.className = ''" name="Horario"></p>
+                  <p><input placeholder="Impedimentos..." oninput="this.className = ''" name="Impedimentos"></p>
+                  <p><input placeholder="Cuantas Horas Sueles tener al dia para cocinar..." oninput="this.className = ''" name="horcocina"></p>
+                  <p><input placeholder="Cuantas Horas Sueles tener al dia para hacer ejercicio..." oninput="this.className = ''" name="horeje"></p>
+                  <p><input placeholder="Cuantas veces a la semana entrenas..." oninput="this.className = ''" name="alasemana"></p>
+                  <p><input placeholder="Impedimentos..." oninput="this.className = ''" name="Impedimentos"></p>
                 </div>
                 
                 <div style="overflow:auto;">
                   <div style="float:right;">
-                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                    <button type="button" id="prevBtn" onclick="nextPrev(-1)" class="btn btn-secondary">Previous</button>
+                    <button type="button" id="nextBtn" onclick="nextPrev(1)" class="btn btn-primary">Next</button>
                   </div>
                 </div>
                 
