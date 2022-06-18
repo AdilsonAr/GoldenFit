@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use App\Models\AreasEnfoque;
 
 class HomeController extends Controller
 {
@@ -25,8 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
-
-        Log::info("role: ".$user->role);
-        return view('home')->with('role',$user->role);
+        $data=AreasEnfoque::all(['id','nombre']);
+        return view('home')->with(["role" => $user->role,"data"=>$data]);
     }
 }
