@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
-        return view('home')->with(["role" => $user->role,]);
+
+        Log::info("role: ".$user->role);
+        return view('home')->with('role',$user->role);
     }
 }

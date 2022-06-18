@@ -3,8 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            
-            <dashboard role={{$role}}/>
+            <dashboard :role-val="{{$role}}"></dashboard>
         </div>
     </div>
 @endsection
