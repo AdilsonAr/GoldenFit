@@ -68,6 +68,7 @@
                       
   
                 </div>
+               
                 
                 <div class="tab">Rutina:
                   <p><input placeholder="Horario..." oninput="this.className = ''" name="Horario"></p>

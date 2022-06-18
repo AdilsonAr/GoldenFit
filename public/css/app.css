@@ -7,6 +7,8 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
  /* Style the form */
+
+ 
 #regForm {
   background-color: #ffffff;
   margin: 100px auto;
@@ -11334,4 +11336,6 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+
+  
 }
