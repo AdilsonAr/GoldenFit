@@ -16,6 +16,9 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+
+                <a href="{{ url('/send-email-pdf') }}" 
+                class="text-sm text-gray-700 dark:text-gray-500 underline">Enviar</a>
             </div>
         </div>
     </div>
