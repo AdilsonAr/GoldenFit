@@ -10,6 +10,8 @@
 
  
 #regForm {
+  border-radius: 2%;
+    box-shadow: 60px -16px #353838;
   background-color: #ffffff;
   margin: 100px auto;
   padding: 40px;

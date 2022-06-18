@@ -23,9 +23,23 @@
                 
                 <!-- One "tab" for each step in the form: -->
                 <div class="tab"><h1>Informacion Personal:</h1>
-                  <p><input placeholder="Peso..." oninput="this.className = ''" name="weight"></p>
-                  <p><input placeholder="Edad..." oninput="this.className = ''" name="age"></p>
-                  <p><input placeholder="Altura..." oninput="this.className = ''" name="height"></p>
+                  <p><input placeholder="Estatura..." oninput="this.className = ''" name="estatura"></p>
+                  <p><input placeholder="Edad..." oninput="this.className = ''" name="edad"></p>
+                  <p><input placeholder="Peso Actual Lb..." oninput="this.className = ''" name="pesoActual"></p>
+                  <p><input placeholder="Peso Deseado Lb..." oninput="this.className = ''" name="pesoDeseado"></p>
+                  <p><label>SEXO:</label></p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sexo" id="exampleRadios1" value="masculino" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                      MASCULINO
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sexo" id="exampleRadios2" value="femenino">
+                    <label class="form-check-label" for="exampleRadios2">
+                     FEMENINO
+                    </label>
+                  </div>
                 </div>
                 
                 <div class="tab"><h1>Plan alimenticio:</h1><br>
@@ -82,7 +96,7 @@
                 <div style="overflow:auto;">
                   <div style="float:right;">
                     <button type="button" id="prevBtn" onclick="nextPrev(-1)" class="btn btn-secondary">Previous</button>
-                    <button type="button" id="nextBtn" onclick="nextPrev(1)" class="btn btn-primary">Next</button>
+                    <button type="button" id="nextBtn" onclick="nextPrev(1)" class="btn btn-primary">Siguiente</button>
                   </div>
                 </div>
                 
@@ -128,7 +142,7 @@ $(form).on('submit', function(event){
               // This function will display the specified tab of the form...
               var x = document.getElementsByClassName("tab");
               x[n].style.display = "block";
-              //... and fix the Previous/Next buttons:
+              //... and fix the Previous/Siguiente buttons:
               if (n == 0) {
                 document.getElementById("prevBtn").style.display = "none";
               } else {
@@ -136,9 +150,9 @@ $(form).on('submit', function(event){
               }
               if (n == (x.length - 1)) {
                 document.getElementById("nextBtn").innerHTML = "Submit";
-                $('#nextBtn').removeAttr("type").attr("type", "submit");
+              
               } else {
-                document.getElementById("nextBtn").innerHTML = "Next";
+                document.getElementById("nextBtn").innerHTML = "Siguiente";
               }
               //... and run a function that will display the correct step indicator:
               fixStepIndicator(n)

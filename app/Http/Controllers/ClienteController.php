@@ -22,7 +22,8 @@ class ClienteController extends Controller
    {
 
 
-   return response()->json(['message' => 'success','request'=> $request->all()]);
+
+      return response()->json(['message' => 'success','request'=> $request->all()]);
    }
     /**
      * Show the form for creating a new resource.
