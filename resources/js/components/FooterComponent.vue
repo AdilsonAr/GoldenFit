@@ -3,7 +3,7 @@
   <v-footer
     dark
     padless
-    style="position: fixed; bottom: 0; width: 100%;"
+    style="position: fixed; bottom: 0; width: 100%;margin-left: -14%;"
   >
     <v-card
       class="flex"
