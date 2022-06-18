@@ -21,9 +21,30 @@ class ClienteController extends Controller
     public function saveinformation(Request $request)
    {
 
+         $data=$request->all();
+         $user = auth()->user();
+         Cliente::create([
+            
+                "gustoPorCarne" => 3,
+                "gustoPorCerdo" => 3,
+                "gustoPorPescado" => 3,
+                "horasParaCocinar" => $data['horasParaCocinar'],
+                "desayuna" => true,
+                "horasParaEjercicio" => $data['horasParaEjercicio'],
+                "nivelActividadFisica" => 2,
+                "edad" => $data['edad'],
+                "estatura" => $data['estatura'],
+                "pesoActual" => $data['pesoActual'],
+                "pesoDeseado" => $data['pesoDeseado'],
+                "nombre" => $data['nombre'],
+                "sexo" => $data['sexo'],
+                "apellidos" => $data['apellido'],
+                "telefono" => $data['telefono'],
+                "id_usuario" => $user->id,
+            
+        ]); 
 
-
-      return response()->json(['message' => 'success','request'=> $request->all()]);
+      return response()->json(['message' => 'success','request'=>$data ,'edad'=>$data['edad']]);
    }
     /**
      * Show the form for creating a new resource.
